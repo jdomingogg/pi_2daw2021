@@ -21,6 +21,7 @@ class CreateProductoTable extends Migration
             $table->integer('stock');
             $table->string('imagen');
             $table->integer('id_categoria');
+            $table->timestamps();
 
         });
     }

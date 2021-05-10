@@ -21,6 +21,7 @@ class CreateUsuarioTable extends Migration
             $table->string('apellidos');
             $table->string('direccion');
             $table->char('admin');
+            $table->timestamps();
         });
     }
 

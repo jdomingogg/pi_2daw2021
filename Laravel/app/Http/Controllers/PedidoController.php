@@ -14,7 +14,9 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $ar = pedido::all();
+        $ar1 = $ar->toArray();
+        return response()->json($ar);
     }
 
     /**
@@ -35,7 +37,8 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pedido::create($request->all());
+        return redirect()->away('https://www.google.com');
     }
 
     /**

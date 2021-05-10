@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Usuario extends Model
 {
@@ -33,4 +34,12 @@ class Usuario extends Model
     {
         return $this->hasMany(Valoracion::class, 'id_usuario', 'id');
     }
+
+
+    public static function updateData($id,$data){
+        DB::table('users')
+          ->where('id', $id)
+          ->update($data);
+      }
+
 }

@@ -14,7 +14,9 @@ class Lista_DeseosController extends Controller
      */
     public function index()
     {
-        //
+        $ar = Lista_Deseos::all();
+        $ar1 = $ar->toArray();
+        return response()->json($ar);
     }
 
     /**
@@ -35,7 +37,8 @@ class Lista_DeseosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Lista_Deseos::create($request->all());
+        return redirect()->away('https://www.google.com');
     }
 
     /**

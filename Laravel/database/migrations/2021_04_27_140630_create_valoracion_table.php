@@ -19,6 +19,7 @@ class CreateValoracionTable extends Migration
             $table->integer('puntuacion');
             $table->integer('id_usuario');
             $table->integer('id_producto');
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,7 @@ class CreateListadeseosTable extends Migration
         Schema::create('listadeseos', function (Blueprint $table) {
             $table->integer('id_usuario');
             $table->integer('id_producto');
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ class CreateCategoriaTable extends Migration
             $table->id();
             $table->string('nombre_cat');
             $table->string('descripcion_cat');
+            $table->timestamps();
 
         });
     }

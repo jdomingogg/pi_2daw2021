@@ -14,7 +14,9 @@ class Detalle_PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $ar = Detalle_Pedido::all();
+        $ar1 = $ar->toArray();
+        return response()->json($ar);
     }
 
     /**
@@ -35,7 +37,8 @@ class Detalle_PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Detalle_Pedido::create($request->all());
+        return redirect()->away('https://www.google.com');
     }
 
     /**

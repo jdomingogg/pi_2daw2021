@@ -14,7 +14,9 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $ar = Usuario::all();
+        $ar1 = $ar->toArray();
+        return response()->json($ar);
     }
 
     /**
@@ -35,7 +37,8 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Usuario::create($request->all());
+        return redirect()->away('https://www.google.com');
     }
 
     /**
@@ -69,7 +72,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        //
+
     }
 
     /**

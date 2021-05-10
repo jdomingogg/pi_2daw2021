@@ -14,7 +14,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $ar = Producto::all();
+        $ar1 = $ar->toArray();
+        return response()->json($ar);
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('edit');
     }
 
     /**
@@ -35,7 +37,8 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Producto::create($request->all());
+        return redirect()->away('https://www.google.com');
     }
 
     /**

@@ -19,6 +19,7 @@ class CreateDetallepedidoTable extends Migration
             $table->integer('id_producto');
             $table->integer('cantidad');
             $table->char('devuelto');
+            $table->timestamps();
 
         });
     }

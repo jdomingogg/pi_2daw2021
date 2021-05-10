@@ -14,7 +14,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $ar = Categoria::all();
+        $ar1 = $ar->toArray();
+        return response()->json($ar);
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +37,9 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Categoria::create($request->all());
+        return redirect()->away('https://www.google.com');
+
     }
 
     /**

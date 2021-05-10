@@ -18,6 +18,7 @@ class CreatePedidoTable extends Migration
             $table->char('comprado');
             $table->date('fecha');
             $table->integer('id_usuario');
+            $table->timestamps();
         });
     }
 
