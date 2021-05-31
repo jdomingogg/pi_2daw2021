@@ -24,7 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::resource('categoria', CategoriaController::class);
 Route::resource('detalle-pedido', Detalle_PedidoController::class);
 Route::resource('lista-deseos', Lista_DeseosController::class);

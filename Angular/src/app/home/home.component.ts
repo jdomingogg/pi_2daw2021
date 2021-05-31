@@ -1,7 +1,9 @@
+import { BackDataService } from './../services/back-data.service';
 import { Juego } from './../classes/juego';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 
 
 
@@ -13,9 +15,28 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public juegos: Array<Juego> = [];
 
-  ngOnInit(): void {
+  constructor(private _backdata: BackDataService) {
+    this.mostrarJuegos();
+    console.log(this.juegos);
   }
 
+
+
+  mostrarJuegos() {
+     this._backdata.obtenerJuegos().subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        this.juegos.push(new Juego(data[i]['id'], data[i]['nombre'], data[i]['descripcion'], data[i]['precio'], data[i]['stock'], data[i]['imagen'], data[i]['categoria']));
+      }
+
+    }
+    )
+  }
+
+
+  ngOnInit(): void {
+
+  }
 }
+

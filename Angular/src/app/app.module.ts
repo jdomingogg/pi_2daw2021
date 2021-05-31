@@ -10,6 +10,10 @@ import { JuegoComponent } from './juego/juego.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { ValoradosComponent } from './valorados/valorados.component';
 import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NovedadesComponent } from './novedades/novedades.component';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +24,16 @@ import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
     JuegoComponent,
     InicioSesionComponent,
     ValoradosComponent,
-    NuevoUsuarioComponent
+    NuevoUsuarioComponent,
+    NovedadesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

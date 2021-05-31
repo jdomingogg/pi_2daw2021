@@ -37,7 +37,7 @@ class Usuario extends Model
 
 
     public static function updateData($id,$data){
-        DB::table('users')
+        DB::table('usuario')
           ->where('id', $id)
           ->update($data);
       }

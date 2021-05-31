@@ -37,7 +37,11 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        Pedido::create($request->all());
+        $pedido = new Pedido;
+        $pedido->comprado=$request->comprado;
+        $pedido->fecha=$request->fecha;
+        $pedido->id_usuario=$request->id_usuario;
+
         return redirect()->away('https://www.google.com');
     }
 

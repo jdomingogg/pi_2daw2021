@@ -37,7 +37,13 @@ class Detalle_PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        Detalle_Pedido::create($request->all());
+        $detalle = new Detalle_Pedido;
+        $detalle->id_pedido = $request->id_pedido;
+        $detalle->id_producto = $request->id_producto;
+        $detalle->cantidad = $request->cantidad;
+        $detalle->devuelto = $request->devuelto;
+        $detalle->save();
+
         return redirect()->away('https://www.google.com');
     }
 
