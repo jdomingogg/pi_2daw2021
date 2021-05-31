@@ -5,9 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

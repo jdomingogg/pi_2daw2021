@@ -1,1 +1,41 @@
-<p>juego works!</p>
+<div class="container m-2 ">
+
+  <div class="row">
+    <div class="col-3">
+      <img class="img-fluid" src="{{juego.imagen}}">
+    </div>
+    <div class="col-6">
+      <h2>{{juego.nombre}}</h2>
+      <h3>{{categ}}</h3>
+      <h4>{{juego.descripcion}}</h4>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-secondary btn-lg" disabled>{{juego.precio}}</button>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6" >
+
+      <div class="row" >
+        <div class="col-2" *ngFor="estrella of estrellas">
+          <img class="img-fluid"
+            src="https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png">
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" (click)="botonAnnadir()">Añadir a la Cesta</button>
+        </div>
+        <div class="col">
+          <a href="#">Añadir a Lista de Deseos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
