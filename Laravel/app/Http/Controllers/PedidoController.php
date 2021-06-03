@@ -83,8 +83,10 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy($id)
     {
-        //
+        $eliminar = Pedido::find($id);
+        $eliminar->delete();
+        return redirect('/');
     }
 }
