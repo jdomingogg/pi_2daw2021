@@ -92,12 +92,13 @@ export class JuegoComponent implements OnInit {
         if (data[i]['id_usuario']==this._backdata.iduser) {
           this.idcarrito=data[i]['id'];
           console.log(this.idcarrito)
+    this._backdata.eliminarPedido(this.idcarrito.toString()).subscribe(data => console.log(data));
           break;
         }
 
       }
     })
-    this._backdata.eliminarPedido(this.idcarrito).subscribe(data => console.log(data));
+
   }
 
 

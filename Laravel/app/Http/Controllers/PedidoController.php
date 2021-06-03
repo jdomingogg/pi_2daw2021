@@ -86,9 +86,9 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Integer $id)
+    public function destroy($id)
     {
-        $eliminar = Pedido::where('id',$id);
+        $eliminar = Pedido::where('id',(int)$id);
 
 
         $eliminar->delete();
