@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class PedidoController extends Controller
 {
@@ -83,9 +84,9 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $eliminar = Pedido::find($id);
+        $eliminar = Pedido::find($request->id);
         $eliminar->delete();
         return redirect('/');
     }
