@@ -88,7 +88,7 @@ class PedidoController extends Controller
     public function destroy(Request $request)
     {
         $eliminar = Pedido::where('id',$request->id);
-        error_log($eliminar);
+
 
         $eliminar->delete();
         return redirect('/');
