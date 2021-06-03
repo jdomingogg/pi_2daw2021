@@ -5,6 +5,7 @@ import { Pedido } from './../classes/pedido';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class BackDataService {
   public haycarrito: boolean = false;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public datepipe: DatePipe) { }
 
   httpHeader={
     headers: new HttpHeaders({'Content-type':'application/json'})
@@ -68,6 +69,7 @@ export class BackDataService {
   }
 
   crearPedido(pedido:any){
+    pedido['fecha']=this.datepipe.transform(pedido['fecha'], 'yyyy-MM-dd');
     return this.http.post("http://54.235.247.212/api/pedido",JSON.stringify(pedido),this.httpHeader);
 
   }

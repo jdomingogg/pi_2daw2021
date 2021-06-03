@@ -13,6 +13,7 @@ import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NovedadesComponent } from './novedades/novedades.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { NovedadesComponent } from './novedades/novedades.component';
     AppRoutingModule,
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
