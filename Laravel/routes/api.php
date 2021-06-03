@@ -24,4 +24,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Rutas Pedido
 Route::post('/pedido', 'App\Http\Controllers\PedidoController@store');
-Route::post('/pedido/destroy', 'App\Http\Controllers\PedidoController@destroy');
+Route::post('/pedido/destroy/{id}', 'App\Http\Controllers\PedidoController@destroy');

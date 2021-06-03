@@ -76,7 +76,7 @@ export class BackDataService {
 
   eliminarPedido(pedido:any){
     pedido['fecha']=this.datepipe.transform(pedido['fecha'], 'yyyy-MM-dd');
-    return this.http.delete("http://54.235.247.212/api/pedido/destroy",pedido);
+    return this.http.post("http://54.235.247.212/api/pedido/destroy",pedido);
 
   }
   anadirAlCarrito(det: any): Observable<any> {
