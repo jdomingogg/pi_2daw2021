@@ -81,8 +81,12 @@ class ValoracionController extends Controller
      * @param  \App\Models\Valoracion  $valoracion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Valoracion $valoracion)
+    public function destroy(string $id)
     {
-        //
+        $eliminar = Valoracion::where('id',(int)$id);
+
+
+        $eliminar->delete();
+        return redirect('/');
     }
 }

@@ -87,8 +87,13 @@ class Detalle_PedidoController extends Controller
      * @param  \App\Models\Detalle_Pedido  $detalle_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Detalle_Pedido $detalle_Pedido)
+    public function destroy(string $id_pedido, string $id_producto)
     {
-        //
+        $eliminar = Detalle_Pedido::where('id_producto', '=', $id_producto)
+            ->where('id_pedido', '=', $id_pedido);
+
+
+        $eliminar->delete();
+        return redirect('/');
     }
 }

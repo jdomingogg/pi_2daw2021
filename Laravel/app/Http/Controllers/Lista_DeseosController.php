@@ -81,8 +81,13 @@ class Lista_DeseosController extends Controller
      * @param  \App\Models\Lista_Deseos  $lista_Deseos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lista_Deseos $lista_Deseos)
+    public function destroy(string $id_user, string $id_producto)
     {
-        //
+        $eliminar = Lista_Deseos::where('id_producto', '=', $id_producto)
+            ->where('id_usuario', '=', $id_user);
+
+
+        $eliminar->delete();
+        return redirect('/');
     }
 }

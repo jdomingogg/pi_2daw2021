@@ -81,8 +81,12 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(string $id)
     {
-        //
+        $eliminar = Producto::where('id',(int)$id);
+
+
+        $eliminar->delete();
+        return redirect('/');
     }
 }

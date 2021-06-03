@@ -81,8 +81,12 @@ class UsuarioController extends Controller
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(string $id)
     {
-        //
+        $eliminar = Usuario::where('id',(int)$id);
+
+
+        $eliminar->delete();
+        return redirect('/');
     }
 }

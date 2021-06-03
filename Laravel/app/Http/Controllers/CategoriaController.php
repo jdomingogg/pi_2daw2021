@@ -82,8 +82,12 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(string $id)
     {
-        //
+        $eliminar = Categoria::where('id',(int)$id);
+
+
+        $eliminar->delete();
+        return redirect('/');
     }
 }
