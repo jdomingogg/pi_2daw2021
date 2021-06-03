@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 use SebastianBergmann\Environment\Console;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -85,7 +86,7 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Integer $id)
     {
         $eliminar = Pedido::where('id',$id);
 

@@ -18,7 +18,7 @@ export class JuegoComponent implements OnInit {
   public juego: Juego = new Juego(-1, "", "", -1, -1, "", -1);
   public detallepedido=new DetallePedido(0,0,1,"");
   public carrito:Pedido = new Pedido('n',new Date(), 0);
-  public idcarrito={id:0};
+  public idcarrito=0;
   id: number = 0;
   private sub: any;
   public categ: string = "";
@@ -90,7 +90,7 @@ export class JuegoComponent implements OnInit {
     this._backdata.obtenerCarrito().subscribe(data=>{
       for (let i = 0; i < data.length; i++) {
         if (data[i]['id_usuario']==this._backdata.iduser) {
-          this.idcarrito={id:data[i]['id']};
+          this.idcarrito=data[i]['id'];
           console.log(this.idcarrito)
           break;
         }
