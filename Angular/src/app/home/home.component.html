@@ -1,3 +1,7 @@
+
+
+
+
 <div class="container">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -31,21 +35,21 @@
 
 
 <div class="container">
-  <div class="row" >
+  <div class="row">
     <div class="col-4" *ngFor="let ju of juegos">
       <a [routerLink]="['../juego',ju.id]">
-      <div class="container">
-        <div class="row" >
+        <div class="container">
           <div class="row">
+            <div class="row">
+              <div class="col">
+                <img class="img-fluid" src="{{ju.imagen}}">
+              </div>
+            </div>
             <div class="col">
-              <img class="img-fluid" src="{{ju.imagen}}">
+              {{ju.nombre}}
             </div>
           </div>
-          <div class="col">
-            {{ju.nombre}}
-          </div>
         </div>
-      </div>
       </a>
     </div>
   </div>

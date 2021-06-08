@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NovedadesComponent } from './novedades/novedades.component';
 import { DatePipe } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { DatePipe } from '@angular/common';
     InicioSesionComponent,
     ValoradosComponent,
     NuevoUsuarioComponent,
-    NovedadesComponent
+    NovedadesComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

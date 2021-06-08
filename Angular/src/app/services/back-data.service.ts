@@ -1,7 +1,8 @@
+import { Usuario } from './../classes/usuario';
 import { DetallePedido } from './../classes/detallepedido';
 import { Pedido } from './../classes/pedido';
 
-
+import { Router} from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -20,20 +21,20 @@ export class BackDataService {
   public urlcarrito: string = "";
   public urlcarritodetalle: string = "";
   public urllista: string = "";
-  public esadmin: boolean = false;
-  public iduser: number = 1;
+  public iduser: number = -1;
   public haycarrito: boolean = false;
+  public username: string = "";
+  public userpsw: string = "";
+  public usuario: Usuario = new Usuario(-1, "", "", "", "", "", "");
 
 
-  constructor(private http: HttpClient, public datepipe: DatePipe) { }
+  constructor(private route: Router,private http: HttpClient, public datepipe: DatePipe) { }
 
-  httpHeader={
-    headers: new HttpHeaders({'Content-type':'application/json'})
+  httpHeader = {
+    headers: new HttpHeaders({ 'Content-type': 'application/json' })
   }
 
-  esAdmin(b: boolean) {
-    this.esadmin = b;
-  }
+
 
   hayCarrito(b: boolean) {
     this.haycarrito = b;
@@ -68,19 +69,64 @@ export class BackDataService {
     return this.http.get(this.urljuegos);
   }
 
-  crearPedido(pedido:any){
-    pedido['fecha']=this.datepipe.transform(pedido['fecha'], 'yyyy-MM-dd');
-    return this.http.post("http://54.235.247.212/api/pedido",JSON.stringify(pedido),this.httpHeader);
+  crearPedido(pedido: any) {
+    pedido['fecha'] = this.datepipe.transform(pedido['fecha'], 'yyyy-MM-dd');
+    return this.http.post("http://54.235.247.212/api/pedido", JSON.stringify(pedido), this.httpHeader);
 
   }
 
-  eliminarPedido(pedido:any){
+  eliminarPedido(pedido: any) {
 
-    return this.http.post("http://54.235.247.212/api/pedido/destroy/"+pedido,this.httpHeader);
+    return this.http.post("http://54.235.247.212/api/pedido/destroy/" + pedido, this.httpHeader);
 
   }
   anadirAlCarrito(det: any): Observable<any> {
     return this.http.post<any>('http://localhost:8000/detalle-pedido/store', det);
   }
+
+  mostrarAtributoUsuario() {
+
+
+    this.obtenerUsuarios().subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]['id'] == this.iduser) {
+          this.usuario.admin = data[i]['admin'];
+          this.usuario.nombre = data[i]['nombre'];
+          this.usuario.apellidos = data[i]['apellidos'];
+          this.usuario.email = data[i]['email'];
+          this.usuario.password = data[i]['password'];
+          this.usuario.direccion = data[i]['direccion'];
+          break;
+        }
+
+      }
+    })
+  }
+
+  login() {
+    this.obtenerUsuarios().subscribe(data => {
+      var b = false;
+      for (let i = 0; i < data.length; i++) {
+        console.log(this.username)
+        if ((this.username == data[i]['email']) && (this.userpsw == data[i]['password'])) {
+          this.iduser = data[i]['id'];
+          b = true;
+
+          this.mostrarAtributoUsuario();
+
+          this.route.navigate(['/home']);
+          break;
+
+
+        }
+
+      }
+      if (!b) {
+        window.alert('Email o contraseña incorrectos, vuelvalo a intentar');
+      }
+    })
+  }
+
+
 
 }
