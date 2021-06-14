@@ -1,18 +1,20 @@
+import { HeaderComponent } from './../header/header.component';
 import { Usuario } from './../classes/usuario';
 import { DetallePedido } from './../classes/detallepedido';
 import { Pedido } from './../classes/pedido';
 
 import { Router} from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DOCUMENT } from '@angular/common';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackDataService {
+
 
   public urljuegos: string = "";
   public urlcategorias: string = "";
@@ -26,9 +28,10 @@ export class BackDataService {
   public username: string = "";
   public userpsw: string = "";
   public usuario: Usuario = new Usuario(-1, "", "", "", "", "", "");
+  HeaderComponent: any;
 
 
-  constructor(private route: Router,private http: HttpClient, public datepipe: DatePipe) { }
+  constructor( private route: Router,private http: HttpClient, public datepipe: DatePipe) { }
 
   httpHeader = {
     headers: new HttpHeaders({ 'Content-type': 'application/json' })
@@ -105,16 +108,14 @@ export class BackDataService {
 
   login() {
     this.obtenerUsuarios().subscribe(data => {
+
       var b = false;
       for (let i = 0; i < data.length; i++) {
         console.log(this.username)
         if ((this.username == data[i]['email']) && (this.userpsw == data[i]['password'])) {
           this.iduser = data[i]['id'];
           b = true;
-
           this.mostrarAtributoUsuario();
-
-          this.route.navigate(['/home']);
           break;
 
 
@@ -125,6 +126,15 @@ export class BackDataService {
         window.alert('Email o contraseña incorrectos, vuelvalo a intentar');
       }
     })
+  }
+
+  logout(){
+
+    var r = confirm("¿Seguro que quieres cerrar sesión?")
+    if (r) {
+      this.iduser=-1;
+    }
+    console.log(this.iduser)
   }
 
 

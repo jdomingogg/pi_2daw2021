@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BackDataService } from '../services/back-data.service';
 
 @Component({
@@ -7,10 +7,12 @@ import { BackDataService } from '../services/back-data.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  @ViewChild('logear') closebutton:any;
   constructor(public _backdata: BackDataService) { }
 
   ngOnInit(): void {
   }
-
+  public onSave() {
+    this.closebutton.nativeElement.click();
+  }
 }

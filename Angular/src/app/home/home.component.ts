@@ -1,9 +1,9 @@
+import { FormsModule } from '@angular/forms';
 import { Usuario } from './../classes/usuario';
 import { BackDataService } from './../services/back-data.service';
 import { Juego } from './../classes/juego';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 
 @Component({
