@@ -70,9 +70,17 @@ class Lista_DeseosController extends Controller
      * @param  \App\Models\Lista_Deseos  $lista_Deseos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lista_Deseos $lista_Deseos)
+    public function update(Request $request, $id_user, $id_producto)
     {
-        //
+        $p=Lista_Deseos::where('id_producto', '=', $id_producto)
+        ->where('id_pedido', '=', $id_user);
+        if ($p!=null) {
+            $p->update($request->all());
+            return response()->json($p,200);
+        }
+        else{
+            return response()->json("No existe");
+        }
     }
 
     /**
@@ -81,7 +89,7 @@ class Lista_DeseosController extends Controller
      * @param  \App\Models\Lista_Deseos  $lista_Deseos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id_user, string $id_producto)
+    public function destroy( $id_user, $id_producto)
     {
         $eliminar = Lista_Deseos::where('id_producto', '=', $id_producto)
             ->where('id_usuario', '=', $id_user);

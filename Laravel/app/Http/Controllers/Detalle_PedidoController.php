@@ -76,9 +76,17 @@ class Detalle_PedidoController extends Controller
      * @param  \App\Models\Detalle_Pedido  $detalle_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Detalle_Pedido $detalle_Pedido)
+    public function update(Request $request, $id_pedido,$id_producto)
     {
-        //
+        $p=Detalle_Pedido::where('id_producto', '=', $id_producto)
+        ->where('id_pedido', '=', $id_pedido);
+        if ($p!=null) {
+            $p->update($request->all());
+            return response()->json($p,200);
+        }
+        else{
+            return response()->json("No existe");
+        }
     }
 
     /**
@@ -87,7 +95,7 @@ class Detalle_PedidoController extends Controller
      * @param  \App\Models\Detalle_Pedido  $detalle_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id_pedido, string $id_producto)
+    public function destroy($id_pedido, $id_producto)
     {
         $eliminar = Detalle_Pedido::where('id_producto', '=', $id_producto)
             ->where('id_pedido', '=', $id_pedido);

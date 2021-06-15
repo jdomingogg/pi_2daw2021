@@ -70,9 +70,16 @@ class ValoracionController extends Controller
      * @param  \App\Models\Valoracion  $valoracion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Valoracion $valoracion)
+    public function update(Request $request, $id)
     {
-        //
+        $p=Valoracion::find($id);
+        if ($p!=null) {
+            $p->update($request->all());
+            return response()->json($p,200);
+        }
+        else{
+            return response()->json("No existe");
+        }
     }
 
     /**
@@ -81,7 +88,7 @@ class ValoracionController extends Controller
      * @param  \App\Models\Valoracion  $valoracion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $eliminar = Valoracion::where('id',(int)$id);
 

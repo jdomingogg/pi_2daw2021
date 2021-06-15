@@ -70,9 +70,16 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        //
+        $p=Producto::find($id);
+        if ($p!=null) {
+            $p->update($request->all());
+            return response()->json($p,200);
+        }
+        else{
+            return response()->json("No existe");
+        }
     }
 
     /**
@@ -81,7 +88,7 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $eliminar = Producto::where('id',(int)$id);
 

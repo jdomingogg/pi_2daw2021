@@ -71,9 +71,16 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
-        //
+        $p=Categoria::find($id);
+        if ($p!=null) {
+            $p->update($request->all());
+            return response()->json($p,200);
+        }
+        else{
+            return response()->json("No existe");
+        }
     }
 
     /**
@@ -82,7 +89,7 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $eliminar = Categoria::where('id',(int)$id);
 

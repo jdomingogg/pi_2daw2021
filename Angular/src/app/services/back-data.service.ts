@@ -27,7 +27,7 @@ export class BackDataService {
   public haycarrito: boolean = false;
   public username: string = "";
   public userpsw: string = "";
-  public usuario: Usuario = new Usuario(-1, "", "", "", "", "", "");
+  public usuario: Usuario = new Usuario( "", "", "", "", "", "");
   HeaderComponent: any;
 
 
@@ -85,6 +85,13 @@ export class BackDataService {
   }
   anadirAlCarrito(det: any): Observable<any> {
     return this.http.post<any>('http://localhost:8000/detalle-pedido/store', det);
+  }
+
+
+  crearUsuario(usuario: any) {
+
+    return this.http.post("http://54.235.247.212/api/usuario", JSON.stringify(usuario), this.httpHeader);
+
   }
 
   mostrarAtributoUsuario() {

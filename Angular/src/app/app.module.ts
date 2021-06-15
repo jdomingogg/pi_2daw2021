@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NovedadesComponent } from './novedades/novedades.component';
 import { DatePipe } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { HeaderComponent } from './header/header.component';
     ValoradosComponent,
     NuevoUsuarioComponent,
     NovedadesComponent,
-    HeaderComponent
+    HeaderComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
