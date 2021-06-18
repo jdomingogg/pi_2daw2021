@@ -11,6 +11,7 @@ class Valoracion extends Model
     protected $table = 'valoracion';
     protected $fillable = [
         'id',
+        'comentario',
         'puntuacion',
         'id_usuario',
         'id_producto'

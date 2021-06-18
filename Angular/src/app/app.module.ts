@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { JuegoComponent } from './juego/juego.component';
-import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { ValoradosComponent } from './valorados/valorados.component';
 import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +15,7 @@ import { NovedadesComponent } from './novedades/novedades.component';
 import { DatePipe } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -25,12 +25,13 @@ import { PerfilComponent } from './perfil/perfil.component';
     BusquedaComponent,
     CategoriaComponent,
     JuegoComponent,
-    InicioSesionComponent,
+
     ValoradosComponent,
     NuevoUsuarioComponent,
     NovedadesComponent,
     HeaderComponent,
-    PerfilComponent
+    PerfilComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

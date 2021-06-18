@@ -15,12 +15,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6" >
+    <div class="col-6">
 
-      <div class="row" >
+      <div class="row">
         <div class="col-2" *ngFor="estrella of estrellas">
-          <img class="img-fluid"
-            src="https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png">
+          <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png">
         </div>
       </div>
 
@@ -30,7 +29,7 @@
       <div class="row">
         <div class="col">
           <button class="btn btn-primary" (click)="botonAnnadir()">Añadir a la Cesta</button>
-          <button class="btn btn-primary" (click)="botonEliminar()">Eliminar</button>
+
         </div>
         <div class="col">
           <a href="#">Añadir a Lista de Deseos</a>
@@ -39,4 +38,50 @@
     </div>
   </div>
 
+</div>
+<br>
+<br>
+<h2>Comenta:</h2>
+<form (ngSubmit)="comentar()">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Comentario:</label>
+    <textarea  name="comentario" [(ngModel)]="this.nuevocomentario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
+
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Puntuación</label>
+    <input name="punt" type="number" style="width: 100px;" max="5" min="0" [(ngModel)]="this.nuevapuntuacion" class="form-control" id="exampleInputPassword1">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Comentar</button>
+</form>
+<br>
+<br>
+
+<h2>Comentarios</h2>
+
+<div class="container m-4 p-4" style="border-bottom: 1px solid black;" *ngFor="let comentario of valoraciones">
+  <div class="row">
+    <div class="col">
+      {{comentario.usuario}} comentó:
+    </div>
+    <div class="row" >
+      <div class="col-9" >
+        <div style="border-radius: 10px; height: 50px; width: 100%; border: 1px solid darkblue; background-color: beige;" >{{comentario.comentario}}</div>
+      </div>
+      <div class="col-3" >
+        <div class="row">
+          <div class="col">
+            Puntuación:
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3>{{comentario.puntuacion}}/5</h3>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

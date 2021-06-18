@@ -1,3 +1,5 @@
+import { AdminComponent } from './admin/admin.component';
+import { PerfilComponent } from './perfil/perfil.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { NovedadesComponent } from './novedades/novedades.component';
 import { ValoradosComponent } from './valorados/valorados.component';
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'juego/:id', component: JuegoComponent },
   { path: 'valorados', component: ValoradosComponent },
   { path: 'novedades', component: NovedadesComponent },
-  { path: 'categoria', component: CategoriaComponent }
+  { path: 'categoria', component: CategoriaComponent },
+  { path: 'perfil', component: PerfilComponent },
+  { path: 'admin', component: AdminComponent }
 
 ];
 
