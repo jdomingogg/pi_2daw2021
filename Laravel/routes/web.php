@@ -41,8 +41,8 @@ Route::resource('valoracion', ValoracionController::class);
 Route::get('sendemail/',function(){
     $correo = new CompraMailable(12);
 
-    $user = Usuario::where('id',1)->get();
+    $user = Usuario::where('id',1)->get('email');
 
 
-    Mail::to($user->email)->send($correo);
+    Mail::to($user)->send($correo);
 });
