@@ -67,7 +67,7 @@ export class CarritoComponent implements OnInit {
   }
 
   comprar(){
-    this._backdata.enviarEmail(this._backdata.idultimopedido,this._backdata.iduser).subscribe(data=>{console.log(data)})
+    this._backdata.enviarEmail().subscribe(data=>{console.log(data)})
   }
 
 }

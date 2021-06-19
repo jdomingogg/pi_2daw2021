@@ -38,10 +38,10 @@ Route::resource('usuario', UsuarioController::class);
 Route::resource('valoracion', ValoracionController::class);
 
 
-Route::get('sendemail/',function(){
-    $correo = new CompraMailable(12);
+Route::get('sendemail/{id_pedido}/{id_usuario}',function($id_pedido,$id_usuario){
+    $correo = new CompraMailable($id_pedido);
 
-    $user = Usuario::where('id',1)->get('email');
+    $user = Usuario::where('id',$id_usuario)->get('email');
 
 
     Mail::to('jdgarridogalve@gmail.com')->send($correo);
