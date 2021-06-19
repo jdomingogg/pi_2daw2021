@@ -29,16 +29,53 @@ export class BackDataService {
   public userpsw: string = "";
   public usuario: Usuario = new Usuario("", "", "", "", "", "");
   HeaderComponent: any;
-  public idret:number=0;
+  public idret: number = 0;
+  public detallespedido: Array<DetallePedido> = [];
+  public idultimopedido=0;
 
 
-  constructor(private route: Router, private http: HttpClient, public datepipe: DatePipe) { }
+  constructor(private route: Router, private http: HttpClient, public datepipe: DatePipe) {
+
+
+
+  }
 
   httpHeader = {
     headers: new HttpHeaders({ 'Content-type': 'application/json' })
   }
 
+  ultimoPedido(){
+    this.obtenerCarrito().subscribe(data=>{
+      for (let i = 0; i < data.length; i++) {
 
+        if (data[i]['id_usuario']==this.iduser) {
+          if (data[i]['comprado']=='n') {
+
+            this.idultimopedido=data[i]['id'];
+            break;
+          }
+        }
+
+
+      }
+    })
+  }
+
+  detallesPedido(){
+
+    this.obtenerCarritoDetalles().subscribe(data => {
+      this.detallespedido=[];
+      console.log(this.idultimopedido)
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]['id_pedido']==this.idultimopedido) {
+          this.detallespedido.push(new DetallePedido(this.idultimopedido,data[i]['id_producto'],data[i]['cantidad'],data[i]['devuelto']));
+
+        }
+
+      }
+
+    })
+  }
 
   hayCarrito(b: boolean) {
     this.haycarrito = b;
@@ -142,7 +179,7 @@ export class BackDataService {
 
   eliminarCarritoDetalles(p: any) {
 
-    return this.http.post("http://54.235.247.212/api/detallepedido/destroy/" + p, this.httpHeader);
+    return this.http.post("http://54.235.247.212/api/detallepedido/destroy/" + p.id_pedido+"/" + p.id_producto, this.httpHeader);
 
   }
 
@@ -240,20 +277,20 @@ export class BackDataService {
     console.log(this.iduser)
   }
 
-  obtenerId(us:Usuario) :number{
+  obtenerId(us: Usuario): number {
 
 
-    this.obtenerUsuarios().subscribe(data=>{
-      var id2=0;
+    this.obtenerUsuarios().subscribe(data => {
+      var id2 = 0;
       for (let i = 0; i < data.length; i++) {
-        if (us.email==data[i]['email']) {
-          id2=data[i]['id'];
+        if (us.email == data[i]['email']) {
+          id2 = data[i]['id'];
           break;
         }
 
 
       }
-      this.idret=id2;
+      this.idret = id2;
     })
 
     return this.idret;

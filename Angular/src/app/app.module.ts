@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AdminComponent } from './admin/admin.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AdminComponent } from './admin/admin.component';
     NovedadesComponent,
     HeaderComponent,
     PerfilComponent,
-    AdminComponent
+    AdminComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,

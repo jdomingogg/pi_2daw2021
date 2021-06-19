@@ -1,0 +1,29 @@
+<h1>Carrito</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of arrayjeugos; let i=index">
+      <td><img class="img-fluid" style="width: 30px;" src="{{item.imagen}}"></td>
+      <td>{{item.nombre}}</td>
+      <td>{{detallesPedido[i].cantidad}}</td>
+      <td>{{item.precio}}€</td>
+      <td><td><button class="btn btn-danger" (click)="eliminarJuego(detallesPedido[i])">Quitar del carrito</button></td>
+    </tr>
+  </tbody>
+</table>
+<div class="container">
+  <div class="row">
+
+    <div class="col-2 offset-10">
+      <button class="btn btn-success">Comprar</button>
+    </div>
+  </div>
+</div>

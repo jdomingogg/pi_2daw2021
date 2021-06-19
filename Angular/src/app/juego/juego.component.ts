@@ -46,40 +46,51 @@ export class JuegoComponent implements OnInit {
   }
 
   generarValoraciones() {
-    this._backdata.obtenerValoraciones().subscribe(data => {
+    this.valoraciones = []
 
+    this._backdata.obtenerValoraciones().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        console.log(this.id)
-        console.log(data[i]['id_producto'])
+        console.log(i)
         if (this.id == data[i]['id_producto']) {
           this._backdata.obtenerUsuarios().subscribe(usuarioses => {
             for (let y = 0; y < usuarioses.length; y++) {
               if (usuarioses[y]['id'] == data[i]['id_usuario']) {
                 this.valoraciones.push(new Valoracion(data[i]['comentario'], data[i]['puntuacion'], data[i]['id_usuario'], data[i]['id_producto'], usuarioses[y]['nombre']));
-                this.mediavaloracion = this.mediavaloracion + data[i]['puntuacion'];
-                console.log(this.mediavaloracion + "aa")
               }
-
             }
-
-            this.mediavaloracion = this.mediavaloracion / this.valoraciones.length;
-            console.log(this.mediavaloracion)
-            this.estrellas = []
-            for (let j = 0; j < this.mediavaloracion; j++) {
-              this.estrellas.push(1);
-
-            }
-
           })
+        }
+      }
+    })
+
+
+
+    this._backdata.obtenerValoraciones().subscribe(data => {
+      var cont = 0;
+      for (let i = 0; i < data.length; i++) {
+        if (this.id == data[i]['id_producto']) {
+          this.mediavaloracion = this.mediavaloracion + data[i]['puntuacion'];
+          cont++;
 
         }
 
+      }
+      this.mediavaloracion = this.mediavaloracion / cont;
+      console.log(this.mediavaloracion)
+      this.estrellas = []
+      for (let j = 0; j < this.mediavaloracion; j++) {
+        this.estrellas.push(1);
 
       }
 
-
-
     })
+
+
+
+
+
+
+
   }
 
 
@@ -218,10 +229,15 @@ export class JuegoComponent implements OnInit {
 
 
   comentar() {
-    const nuevavaloracion = {  puntuacion: this.nuevapuntuacion,comentario: this.nuevocomentario, id_usuario: this._backdata.iduser, id_producto: this.id }
-    var nuevavaloracion2 = new Valoracion(this.nuevocomentario,this.nuevapuntuacion,this._backdata.iduser,this.id.toString(),"")
-    console.log(nuevavaloracion)
-    this._backdata.crearValoracion(nuevavaloracion).subscribe(data => { console.log(data) })
+
+    var nuevavaloracion2 = new Valoracion(this.nuevocomentario, this.nuevapuntuacion, this._backdata.iduser, this.id.toString(), "")
+    console.log(nuevavaloracion2)
+    this._backdata.crearValoracion(nuevavaloracion2).subscribe(data => { console.log(data) })
+    this.mostrarJuego();
+    setTimeout(() => {
+      this.generarValoraciones();
+    }, 500);
+
   }
 
 }

@@ -1,3 +1,4 @@
+import { CarritoComponent } from './carrito/carrito.component';
 import { AdminComponent } from './admin/admin.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { CategoriaComponent } from './categoria/categoria.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'novedades', component: NovedadesComponent },
   { path: 'categoria', component: CategoriaComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent },
+  { path: 'carrito', component: CarritoComponent }
 
 ];
 

@@ -7,6 +7,9 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ValoracionController;
+use App\Mail\CompraMailable;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +34,13 @@ Route::resource('pedido', PedidoController::class);
 Route::resource('producto', ProductoController::class);
 Route::resource('usuario', UsuarioController::class);
 Route::resource('valoracion', ValoracionController::class);
+
+
+Route::get('sendemail/',function($id_pedido,$id_usuario){
+    $correo = new CompraMailable($id_pedido);
+
+    $user = Usuario::where('id',$id_usuario);
+
+
+    Mail::to($user['email'])->send($correo);
+});

@@ -63,7 +63,7 @@
             Menú
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Carrito</button>
+            <button class="dropdown-item" type="button" [routerLink]="['../carrito']">Carrito</button>
             <button class="dropdown-item" type="button">Lista de deseos</button>
             <div *ngIf="_backdata.iduser>-1">
               <button class="dropdown-item" type="button" [routerLink]="['../perfil']">Perfil</button>
