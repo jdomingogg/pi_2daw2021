@@ -15,7 +15,7 @@
     <p>Tiempo estimado de entrega: 48 Horas</p>
     <h3>Detalles de pedido:</h3>
 
-    <table>
+    <table style="border: 1px solid black;">
         <tr>
             <th>Nombre producto</th>
             <th>Cantidad</th>
