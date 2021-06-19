@@ -36,7 +36,7 @@ Route::resource('usuario', UsuarioController::class);
 Route::resource('valoracion', ValoracionController::class);
 
 
-Route::get('sendemail/',function($id_pedido,$id_usuario){
+Route::get('sendemail',function($id_pedido,$id_usuario){
     $correo = new CompraMailable($id_pedido);
 
     $user = Usuario::where('id',$id_usuario);
