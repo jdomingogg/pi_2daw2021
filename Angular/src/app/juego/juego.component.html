@@ -10,7 +10,7 @@
       <h4>{{juego.descripcion}}</h4>
     </div>
     <div class="col-3">
-      <button type="button" class="btn btn-secondary btn-lg" disabled>{{juego.precio}}</button>
+      <button type="button" class="btn btn-secondary btn-lg" disabled>{{juego.precio}}€</button>
 
     </div>
   </div>
@@ -28,7 +28,13 @@
     <div class="col-6">
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary" (click)="botonAnnadir()">Añadir a la Cesta</button>
+          <form (ngSubmit)="this.botonAnnadir()">
+            <label for="exampleInputEmail1">Cantidad</label>
+            <input style="width: 50px;" type="number" min="1" max="{{juego.stock}}" name="miselect" (ngModelChange)="cambiacantidad($event)" class="form-input" [(ngModel)]="this.detallepedido.cantidad">
+            {{this.detallepedido.cantidad}}
+            <button class="btn btn-primary" type="submit"  >Añadir a la Cesta</button>
+          </form>
+
 
         </div>
         <div class="col">

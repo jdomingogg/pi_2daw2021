@@ -15,7 +15,7 @@
       <td>{{item.nombre}}</td>
       <td>{{detallesPedido[i].cantidad}}</td>
       <td>{{item.precio}}€</td>
-      <td><td><button class="btn btn-danger" (click)="eliminarJuego(detallesPedido[i])">Quitar del carrito</button></td>
+      <td><td><button class="btn btn-danger" (click)="eliminarJuego(detallesPedido[i],item)">Quitar del carrito</button></td>
     </tr>
   </tbody>
 </table>
@@ -23,7 +23,7 @@
   <div class="row">
 
     <div class="col-2 offset-10">
-      <button class="btn btn-success" (click)="comprar()">Comprar</button>
+      <button class="btn btn-success" (click)="comprar()" [routerLink]="['../home']">Comprar</button>
     </div>
   </div>
 </div>

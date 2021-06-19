@@ -23,13 +23,13 @@ export class AdminComponent implements OnInit {
   nuevoUser: Usuario = new Usuario("", "", "", "", "", "n");
   nuevojeugo: Juego = new Juego(0, "", "", -1, -1, "", -1);
   arrayCategorias: Array<String> = [];
-  categoriaseleccionada:string="aaaaaaaa";
-  categoriaseleccionada2:string="aaaaaaaa";
-  editarjeugo:boolean=false;
-  editarusuario:boolean=false;
-  juegoeditado:Juego=new Juego(0, "", "", -1, -1, "", -1);
+  categoriaseleccionada: string = "aaaaaaaa";
+  categoriaseleccionada2: string = "aaaaaaaa";
+  editarjeugo: boolean = false;
+  editarusuario: boolean = false;
+  juegoeditado: Juego = new Juego(0, "", "", -1, -1, "", -1);
   usuarioeditado: Usuario = new Usuario("", "", "", "", "", "n");
-  idusuario=0;
+  idusuario = 0;
 
 
 
@@ -46,7 +46,7 @@ export class AdminComponent implements OnInit {
 
 
 
-    this._backdata.obtenerCategorias().subscribe(data=>{
+    this._backdata.obtenerCategorias().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
         this.arrayCategorias.push(data[i]['nombre_cat']);
       }
@@ -101,35 +101,35 @@ export class AdminComponent implements OnInit {
         }
       }
     })
-    this.juego=true;
+    this.juego = true;
 
   }
 
 
-  accederJuegoEditado(idjuego:any){
+  accederJuegoEditado(idjuego: any) {
 
-    this._backdata.obtenerJuegos().subscribe(data=>{
+    this._backdata.obtenerJuegos().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        if (idjuego==data[i]['id']) {
-          this.juegoeditado.nombre=data[i]['nombre'];
-          this.juegoeditado.id=data[i]['id'];
-          this.juegoeditado.descripcion=data[i]['descripcion'];
-          this.juegoeditado.id_categoria=data[i]['id_categoria'];
-          this.juegoeditado.imagen=data[i]['imagen'];
-          this.juegoeditado.precio=data[i]['precio'];
-          this.juegoeditado.stock=data[i]['stock'];
+        if (idjuego == data[i]['id']) {
+          this.juegoeditado.nombre = data[i]['nombre'];
+          this.juegoeditado.id = data[i]['id'];
+          this.juegoeditado.descripcion = data[i]['descripcion'];
+          this.juegoeditado.id_categoria = data[i]['id_categoria'];
+          this.juegoeditado.imagen = data[i]['imagen'];
+          this.juegoeditado.precio = data[i]['precio'];
+          this.juegoeditado.stock = data[i]['stock'];
           console.log(this.juegoeditado)
         }
 
       }
     })
 
-    this._backdata.obtenerCategorias().subscribe(data=>{
+    this._backdata.obtenerCategorias().subscribe(data => {
       console.log(this.categoriaseleccionada2)
       for (let i = 0; i < data.length; i++) {
-        if (this.juegoeditado.id_categoria==data[i]['id']) {
+        if (this.juegoeditado.id_categoria == data[i]['id']) {
           console.log(data[i]['id'])
-          this.categoriaseleccionada2=data[i]['nombre_cat']
+          this.categoriaseleccionada2 = data[i]['nombre_cat']
           break;
         }
 
@@ -137,16 +137,16 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  accederUsuarioEditado(email:any){
-    this._backdata.obtenerUsuarios().subscribe(data=>{
+  accederUsuarioEditado(email: any) {
+    this._backdata.obtenerUsuarios().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        if (email==data[i]['email']) {
-          this.usuarioeditado.admin=data[i]['admin'];
-          this.usuarioeditado.apellidos=data[i]['apellidos'];
-          this.usuarioeditado.direccion=data[i]['direccion'];
-          this.usuarioeditado.email=data[i]['email'];
-          this.usuarioeditado.nombre=data[i]['nombre'];
-          this.usuarioeditado.password=data[i]['password'];
+        if (email == data[i]['email']) {
+          this.usuarioeditado.admin = data[i]['admin'];
+          this.usuarioeditado.apellidos = data[i]['apellidos'];
+          this.usuarioeditado.direccion = data[i]['direccion'];
+          this.usuarioeditado.email = data[i]['email'];
+          this.usuarioeditado.nombre = data[i]['nombre'];
+          this.usuarioeditado.password = data[i]['password'];
 
 
         }
@@ -195,19 +195,19 @@ export class AdminComponent implements OnInit {
 
   }
 
-  editarUsuario(){
+  editarUsuario() {
 
-    this._backdata.obtenerUsuarios().subscribe(data=>{
+    this._backdata.obtenerUsuarios().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        if (this.usuarioeditado.email==data[i]['email']) {
-          this.idusuario=data[i]['id']
-          this._backdata.actualizarUsuario(this.usuarioeditado,this.idusuario).subscribe(data => console.log(data));
+        if (this.usuarioeditado.email == data[i]['email']) {
+          this.idusuario = data[i]['id']
+          this._backdata.actualizarUsuario(this.usuarioeditado, this.idusuario).subscribe(data => console.log(data));
           break;
         }
       }
     })
 
-this.usuario=false;
+    this.usuario = false;
 
   }
 
@@ -218,13 +218,13 @@ this.usuario=false;
   }
 
 
-  registrarJuego(){
-    this._backdata.obtenerCategorias().subscribe(data=>{
+  registrarJuego() {
+    this._backdata.obtenerCategorias().subscribe(data => {
       console.log(this.categoriaseleccionada)
       for (let i = 0; i < data.length; i++) {
-        if (this.categoriaseleccionada==data[i]['nombre_cat']) {
+        if (this.categoriaseleccionada == data[i]['nombre_cat']) {
           console.log(data[i]['id'])
-          this.nuevojeugo.id_categoria=data[i]['id'];
+          this.nuevojeugo.id_categoria = data[i]['id'];
           break;
         }
 
@@ -233,23 +233,25 @@ this.usuario=false;
     this._backdata.crearJuego(this.nuevojeugo).subscribe(data => console.log(data));
     alert("Juego registrado con éxito")
 
+    this.juegoeditado = new Juego(0, "", "", -1, -1, "", -1);
+
   }
 
-  editarJuego(id:any){
-    this._backdata.obtenerCategorias().subscribe(data=>{
+  editarJuego(id: any) {
+    this._backdata.obtenerCategorias().subscribe(data => {
       console.log(this.categoriaseleccionada)
       for (let i = 0; i < data.length; i++) {
-        if (this.categoriaseleccionada2==data[i]['nombre_cat']) {
+        if (this.categoriaseleccionada2 == data[i]['nombre_cat']) {
           console.log(data[i]['id'])
-          this.juegoeditado.id_categoria=data[i]['id'];
+          this.juegoeditado.id_categoria = data[i]['id'];
           break;
         }
 
       }
     })
 
-    this._backdata.actualizarJuego(this.juegoeditado,id).subscribe(data => console.log(data));
-    this.juego=false;
+    this._backdata.actualizarJuego(this.juegoeditado, id).subscribe(data => console.log(data));
+    this.juego = false;
   }
 
 

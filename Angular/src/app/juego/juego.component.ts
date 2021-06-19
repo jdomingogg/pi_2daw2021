@@ -30,6 +30,11 @@ export class JuegoComponent implements OnInit {
   public nuevocomentario: string = "";
   public nuevapuntuacion: number = 0;
 
+  cambiacantidad(valor: any) {
+    this.detallepedido.cantidad = valor;
+  }
+
+
   constructor(private route: ActivatedRoute, private _backdata: BackDataService) {
     this.mostrarJuego();
     this.generarValoraciones();
@@ -63,7 +68,7 @@ export class JuegoComponent implements OnInit {
       }
     })
 
-
+    this.mediavaloracion = 0;
 
     this._backdata.obtenerValoraciones().subscribe(data => {
       var cont = 0;
@@ -98,6 +103,8 @@ export class JuegoComponent implements OnInit {
   botonAnnadir() {
 
 
+
+
     this._backdata.obtenerCarrito().subscribe(data => {
       var bcar = false;
       for (let i = 0; i < data.length; i++) {
@@ -126,8 +133,10 @@ export class JuegoComponent implements OnInit {
           this.detallepedido.id_pedido = id1;
           this.detallepedido.id_producto = this.juego.id;
           this.detallepedido.devuelto = "n";
-          const newdetalle = { id_pedido: this.detallepedido.id_pedido, id_producto: this.detallepedido.id_producto, cantidad: 1, devuelto: 'n' }
+          const newdetalle = { id_pedido: this.detallepedido.id_pedido, id_producto: this.detallepedido.id_producto, cantidad: this.detallepedido.cantidad, devuelto: 'n' }
+          const actualizajuego = { nombre: this.juego.nombre, descripcion: this.juego.descripcion, precio: this.juego.precio, stock: (this.juego.stock - this.detallepedido.cantidad), imagen: this.juego.imagen, id_categoria: this.juego.id_categoria }
           this._backdata.crearCarritoDetalles(newdetalle).subscribe(data => console.log(data));
+          this._backdata.actualizarJuego(actualizajuego, this.juego.id).subscribe(data => console.log(data));
 
 
         })
@@ -154,8 +163,10 @@ export class JuegoComponent implements OnInit {
             this.detallepedido.id_pedido = id1;
             this.detallepedido.id_producto = this.juego.id;
             this.detallepedido.devuelto = "n";
-            const newdetalle = { id_pedido: this.detallepedido.id_pedido, id_producto: this.detallepedido.id_producto, cantidad: 1, devuelto: 'n' }
+            const newdetalle = { id_pedido: this.detallepedido.id_pedido, id_producto: this.detallepedido.id_producto, cantidad: this.detallepedido.cantidad, devuelto: 'n' }
+            const actualizajuego = { nombre: this.juego.nombre, descripcion: this.juego.descripcion, precio: this.juego.precio, stock: (this.juego.stock - this.detallepedido.cantidad), imagen: this.juego.imagen, id_categoria: this.juego.id_categoria }
             this._backdata.crearCarritoDetalles(newdetalle).subscribe(data => console.log(data));
+            this._backdata.actualizarJuego(actualizajuego, this.juego.id).subscribe(data => console.log(data));
 
 
           })
@@ -164,6 +175,9 @@ export class JuegoComponent implements OnInit {
       }
 
     })
+
+
+
 
   }
   /*

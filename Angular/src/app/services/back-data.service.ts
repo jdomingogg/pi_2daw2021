@@ -45,20 +45,23 @@ export class BackDataService {
   }
 
   ultimoPedido(){
-    this.obtenerCarrito().subscribe(data=>{
-      for (let i = 0; i < data.length; i++) {
+    setTimeout(() => {
+      this.obtenerCarrito().subscribe(data=>{
+        for (let i = 0; i < data.length; i++) {
 
-        if (data[i]['id_usuario']==this.iduser) {
-          if (data[i]['comprado']=='n') {
+          if (data[i]['id_usuario']==this.iduser) {
+            if (data[i]['comprado']=='n') {
 
-            this.idultimopedido=data[i]['id'];
-            break;
+              this.idultimopedido=data[i]['id'];
+              break;
+            }
           }
+
+
         }
+      })
+    }, 500);
 
-
-      }
-    })
   }
 
   detallesPedido(){
