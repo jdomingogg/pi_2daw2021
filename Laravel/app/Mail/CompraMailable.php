@@ -33,7 +33,7 @@ class CompraMailable extends Mailable
     public function build()
     {
 
-        $pedido2=Pedido::where('id',$this->pedido);
-        return $this->view('email',['pedido'=>$pedido2]);
+        $p=Pedido::where('id',$this->pedido)->get();
+        return $this->view('email',['p'=>$p]);
     }
 }

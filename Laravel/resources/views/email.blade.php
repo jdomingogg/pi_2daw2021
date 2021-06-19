@@ -8,6 +8,6 @@
 </head>
 <body>
     <h1>Compra Realizada</h1>
-    <p>{{ $pedido->get('id_usuario') }}</p>
+    <p>{{ $p->['id_usuario'] }}</p>
 </body>
 </html>
