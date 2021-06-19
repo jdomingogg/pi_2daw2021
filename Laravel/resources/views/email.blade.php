@@ -11,7 +11,7 @@
 <body>
     <h1>Compra Realizada</h1>
     <p>Estimado {{ $p->usuario['nombre'] }}, su pedido ha sido realizado con éxito.</p>
-    <p>Lugar de envío: {{p->usuario->['direccion']}}</p>
+    <p>Lugar de envío: {{p->usuario['direccion']}}</p>
     <p>Tiempo estimado de entrega: 48 Horas</p>
     <h3>Detalles de pedido:</h3>
 
