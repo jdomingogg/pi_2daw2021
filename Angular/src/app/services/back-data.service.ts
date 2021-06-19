@@ -77,8 +77,8 @@ export class BackDataService {
     })
   }
 
-enviarEmail(){
-  return this.http.get("http://54.235.247.212/sendemail")
+enviarEmail(id_pedido:any,id_usuario:any){
+  return this.http.get("http://54.235.247.212/sendemail/"+id_pedido+"/"+id_usuario)
 }
 
   hayCarrito(b: boolean) {

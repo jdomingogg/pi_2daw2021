@@ -9,5 +9,6 @@
 <body>
     <h1>Compra Realizada</h1>
     <p>{{ $p->usuario['id'] }}</p>
+    <p>{{$p->detalles[0]->producto['nombre']}}</p>
 </body>
 </html>
