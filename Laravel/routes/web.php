@@ -11,6 +11,7 @@ use App\Mail\CompraMailable;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\Environment\Console;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function ($e) {
+
     return view('welcome');
 });
 
