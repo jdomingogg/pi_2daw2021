@@ -16,17 +16,18 @@
     <h3>Detalles de pedido:</h3>
 
     <table>
-    <tr>
-    <th>Nombre producto</th>
-    <th>Cantidad</th>
-    <th>Precio por unidad</th>
-    </tr>
-    @foreach ($p->detalles as $detalle)
-    <tr>
-    <td>{{$detalle->producto['nombre']}}</td>
-    <td>{{$detalle['cantidad']}}</td>
-    <td>{{$detalle->producto['precio']}}</td>
-    </tr>
+        <tr>
+            <th>Nombre producto</th>
+            <th>Cantidad</th>
+            <th>Precio por unidad</th>
+        </tr>
+        @foreach ($p->detalles as $detalle)
+        <tr>
+            <td>{{$detalle->producto['nombre']}}</td>
+            <td>{{$detalle['cantidad']}}</td>
+            <td>{{$detalle->producto['precio']}}</td>
+        </tr>
+        @endforeach
     </table>
 
 </body>
