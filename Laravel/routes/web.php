@@ -44,5 +44,5 @@ Route::get('sendemail/',function(){
     $user = Usuario::where('id',1);
 
 
-    Mail::to($user->email)->send($correo);
+    Mail::to($user->{'email'})->send($correo);
 });
