@@ -1,4 +1,4 @@
-<div class="container m-2 ">
+<div class="container m-2 rounded bg-white  p-2">
 
   <div class="row">
     <div class="col-3">
@@ -31,14 +31,14 @@
           <form (ngSubmit)="this.botonAnnadir()">
             <label for="exampleInputEmail1">Cantidad</label>
             <input style="width: 50px;" type="number" min="1" max="{{juego.stock}}" name="miselect" (ngModelChange)="cambiacantidad($event)" class="form-input" [(ngModel)]="this.detallepedido.cantidad">
-            {{this.detallepedido.cantidad}}
-            <button class="btn btn-primary" type="submit"  >Añadir a la Cesta</button>
+
+            <button  class="btn btn-primary" type="submit"  >Añadir a la Cesta</button>
           </form>
 
 
         </div>
         <div class="col">
-          <a href="#">Añadir a Lista de Deseos</a>
+          <button class="btn btn-secondary" (click)="this.anadirlistadeseos()">Añadir a Lista de Deseos</button>
         </div>
       </div>
     </div>
@@ -47,7 +47,10 @@
 </div>
 <br>
 <br>
-<h2>Comenta:</h2>
+
+
+<div class="container m-2 rounded bg-white  p-2">
+  <h2>Comenta:</h2>
 <form (ngSubmit)="comentar()">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Comentario:</label>
@@ -90,4 +93,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

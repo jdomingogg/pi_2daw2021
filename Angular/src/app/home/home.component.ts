@@ -28,8 +28,9 @@ export class HomeComponent implements OnInit {
       for (let i = 0; i < data.length; i++) {
         this.juegos.push(new Juego(data[i]['id'], data[i]['nombre'], data[i]['descripcion'], data[i]['precio'], data[i]['stock'], data[i]['imagen'], data[i]['categoria']));
       }
-
+      this.juegos=this.juegos.reverse().slice(0,12);
     }
+
     )
   }
 

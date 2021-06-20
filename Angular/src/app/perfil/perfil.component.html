@@ -1,14 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>Perfil</h1>
-      <h2>Información del usuario:</h2>
-    </div>
-  </div>
-  <div class="row" *ngIf="!this.editar">
-    <div class="col">
+<div *ngIf="_backdata.iduser==-1">
+  <h1>Inicie sesión para acceder al perfil</h1>
+</div>
 
-        <div class="container border border-primary">
+<div *ngIf="_backdata.iduser!=-1">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Perfil</h1>
+        <h2>Información del usuario:</h2>
+      </div>
+    </div>
+    <div class="row" *ngIf="!this.editar" >
+      <div class="col">
+
+        <div class="container border border-dark rounded bg-white">
           <div class="row">
             <div class="col">Nombre:</div>
             <div class="col  "> {{_backdata.usuario.nombre}}</div>
@@ -28,39 +33,70 @@
         </div>
         <button (click)="botonEditar()">Editar Perfil</button>
 
+      </div>
+    </div>
+    <div class="row" *ngIf="this.editar">
+      <form (ngSubmit)="this.editarUsuario()">
+        <div class="form-group">
+          <label for="exampleInputName">Nombre</label>
+          <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Nombre"
+            [value]="this.usuarioeditado.nombre" [(ngModel)]="this.usuarioeditado.nombre" name="nombre">
+
+          <label for="exampleInputSurname">Apellidos</label>
+          <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
+            placeholder="Apellidos" [(ngModel)]="this.usuarioeditado.apellidos" name="apellidos">
+
+          <label for="exampleInputdireccion">Dirección</label>
+          <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
+            placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [(ngModel)]="this.usuarioeditado.direccion"
+            name="direccion"></textarea>
+
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="example@example.com" [(ngModel)]="usuarioeditado.email" name="email">
+
+          <label for="exampleInputPassword1">Contraseña</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+            [(ngModel)]="usuarioeditado.password" name="password">
+          <script>
+
+
+          </script>
+          <button type="submit" #logear>Guardar cambios</button>
+
+
+        </div>
+
+
+      </form>
+
+    </div>
+
+    <div class="m-2 rounded bg-white  p-2">
+      <h2>Juegos comprados:</h2>
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th scope="col">Imagen</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lista of this.listajuegos;let j=index">
+            <td><img class="img-fluid" style="width: 30px;" src="{{lista.imagen}}"></td>
+            <td>{{lista.nombre}}</td>
+            <td>{{listadetalles[j].cantidad}}</td>
+            <td>{{lista.precio}}€</td>
+            <div *ngIf="listadetalles[j].devuelto=='s'"><td><button class="btn btn-danger" disabled (click)="devolverJuego(listadetalles[j])">Devuelto</button></td></div>
+            <div *ngIf="listadetalles[j].devuelto=='n'"><td><button class="btn btn-danger"  (click)="devolverJuego(listadetalles[j])">Devolver</button></td></div>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <div class="row" *ngIf="this.editar">
-    <form (ngSubmit)="this.editarUsuario()">
-      <div class="form-group">
-        <label for="exampleInputName">Nombre</label>
-        <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-          placeholder="Nombre" [value]="this.usuarioeditado.nombre" [(ngModel)]="this.usuarioeditado.nombre" name="nombre">
-
-        <label for="exampleInputSurname">Apellidos</label>
-        <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
-          placeholder="Apellidos"  [(ngModel)]="this.usuarioeditado.apellidos" name="apellidos">
-
-        <label for="exampleInputdireccion">Dirección</label>
-        <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
-          placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [(ngModel)]="this.usuarioeditado.direccion"
-          name="direccion"></textarea>
-
-        <label for="exampleInputEmail1">Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="example@example.com" [(ngModel)]="usuarioeditado.email" name="email">
-
-        <label for="exampleInputPassword1">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-          [(ngModel)]="usuarioeditado.password" name="password">
-        <script>
-
-
-        </script>
-        <button type="submit" #logear>Guardar cambios</button>
-
-
-      </div>
-    </form>
-  </div>
 </div>
+

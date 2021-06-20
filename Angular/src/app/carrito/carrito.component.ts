@@ -19,7 +19,7 @@ export class CarritoComponent implements OnInit {
   arrayjeugos: Array<Juego> = [];
   idultimopedido: number = 0;
 
-  constructor(private router: Router, private _backdata: BackDataService, public datepipe: DatePipe) {
+  constructor(private router: Router, public _backdata: BackDataService, public datepipe: DatePipe) {
 
 
 
@@ -81,10 +81,11 @@ export class CarritoComponent implements OnInit {
         if (data[i]['id'] == this._backdata.idultimopedido) {
           const pedidoact = { comprado: "s", fecha: this.datepipe.transform(new Date(), 'yyyy-MM-dd'), id_usuario: this._backdata.iduser }
           this._backdata.actualizarPedido(pedidoact, this._backdata.idultimopedido).subscribe(data=>{console.log(data)});
-          alert('Pedido realizado correctamente, revise su email');
-          this._backdata.enviarEmail(this.idultimopedido, this._backdata.iduser).subscribe(data => { console.log(data) })
+
+          this._backdata.enviarEmail(this._backdata.idultimopedido, this._backdata.iduser).subscribe(data => { console.log(data) })
           const pedidonuevo = { comprado: "n", fecha: this.datepipe.transform(new Date(), 'yyyy-MM-dd'), id_usuario: this._backdata.iduser }
           this._backdata.crearPedido(pedidonuevo).subscribe(data=>{console.log(data)})
+          alert('Pedido realizado correctamente, revise su email');
           break;
         }
 

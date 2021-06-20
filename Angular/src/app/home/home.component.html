@@ -1,24 +1,24 @@
-
-
-
-
 <div class="container">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100"
-          src="https://image.shutterstock.com/image-photo/example-word-written-on-wooden-260nw-1765482248.jpg"
-          alt="First slide">
+        <a
+          href="https://www.vidaextra.com/listas/nintendo-tira-casa-ventana-35-aniversario-super-mario-bros-aqui-tienes-todo-anunciado">
+          <img class="d-block w-100" src="https://i.blogs.es/ec9a4f/1500x500-3-/1366_521.jpeg" alt="First slide"></a>
       </div>
       <div class="carousel-item">
+        <a href="https://blog.normacomics.com/the-legend-of-zelda-enciclopedia-norma-editorial/">
         <img class="d-block w-100"
-          src="https://image.shutterstock.com/image-photo/example-word-written-on-wooden-260nw-1765482248.jpg"
-          alt="Second slide">
+          src="https://blog.normacomics.com/wp-content/uploads/2018/01/THE-LEGEND-OF-ZELDA-ENCICLOPEDIA-EL-PLATO-FUERTE-PARA-ESTA-PRIMAVERA-DE-NORMA-EDITORIAL-1.jpg"
+          alt="Second slide"></a>
+
+
       </div>
       <div class="carousel-item">
+        <a href="https://www.tierragamer.com/gameplay-del-nuevo-nivel-liberado-crash-bandicoot-n-sane-trilogy/">
         <img class="d-block w-100"
-          src="https://image.shutterstock.com/image-photo/example-word-written-on-wooden-260nw-1765482248.jpg"
-          alt="Third slide">
+          src="https://www.tierragamer.com/wp-content/uploads/2017/05/LilWBgw.jpg"
+          alt="Third slide"></a>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -35,21 +35,43 @@
 
 
 <div class="container">
+  <br>
+  <div class="card">
+    <div class="card-body">
+      <h2>Últimas novedades</h2>
+    </div>
+  </div>
+
+
   <div class="row">
-    <div class="col-4" *ngFor="let ju of juegos">
-      <a [routerLink]="['../juego',ju.id]">
-        <div class="container">
+    <div class="col col-lg-4 col-md-6 justify-content-center" *ngFor="let ju of juegos">
+      <a [routerLink]="['../juego',ju.id]" style="text-decoration: none;color:black">
+
+        <div class="justify-content-center card border border-dark m-2" style="width: 18rem;">
+          <img class="card-img-top justify-content-center" src="{{ju.imagen}}" alt="Card image cap">
+          <div class="card-body">
+            <h3 class="card-text">{{ju.nombre}}</h3>
+            <p>{{ju.precio}}€</p>
+          </div>
+        </div>
+
+
+
+
+        <!-- <div class="container">
           <div class="row">
             <div class="row">
               <div class="col">
-                <img class="img-fluid" src="{{ju.imagen}}">
+                <img class="img-fluid" style="width: 100%;" src="{{ju.imagen}}">
               </div>
             </div>
             <div class="col">
               {{ju.nombre}}
             </div>
           </div>
-        </div>
+        </div>-->
+
+
       </a>
     </div>
   </div>

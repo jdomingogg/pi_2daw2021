@@ -1,29 +1,35 @@
 <h1>Carrito</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Imagen</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Precio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of arrayjeugos; let i=index">
-      <td><img class="img-fluid" style="width: 30px;" src="{{item.imagen}}"></td>
-      <td>{{item.nombre}}</td>
-      <td>{{detallesPedido[i].cantidad}}</td>
-      <td>{{item.precio}}€</td>
-      <td><td><button class="btn btn-danger" (click)="eliminarJuego(detallesPedido[i],item)">Quitar del carrito</button></td>
-    </tr>
-  </tbody>
-</table>
-<div class="container">
-  <div class="row">
+<div *ngIf="_backdata.iduser==-1">
+  <h1>Inicie sesión para acceder al carrito</h1>
+</div>
+<div *ngIf="_backdata.iduser!=-1" class="m-2 rounded bg-white  p-2">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Imagen</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of arrayjeugos; let i=index">
+        <td><img class="img-fluid" style="width: 30px;" src="{{item.imagen}}"></td>
+        <td>{{item.nombre}}</td>
+        <td>{{detallesPedido[i].cantidad}}</td>
+        <td>{{item.precio}}€</td>
+        <td><td><button class="btn btn-danger" (click)="eliminarJuego(detallesPedido[i],item)">Quitar del carrito</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container">
+    <div class="row">
 
-    <div class="col-2 offset-10">
-      <button class="btn btn-success" (click)="comprar()" [routerLink]="['../home']">Comprar</button>
+      <div class="col-2 offset-10">
+        <button class="btn btn-success" (click)="comprar()" [routerLink]="['../home']">Comprar</button>
+      </div>
     </div>
   </div>
 </div>
+

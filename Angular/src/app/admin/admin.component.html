@@ -1,337 +1,348 @@
 <h1>Administración</h1>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
+<div *ngIf="_backdata.usuario.admin=='n'||_backdata.iduser==-1" >
+  <h2 >
+    Inicie sesión como usuario administrativo
+  </h2>
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Acción</th>
-          </tr>
+</div>
 
-        </thead>
-        <tbody>
-          <tr>
-            <td>Usuarios</td>
-            <td><button class="btn btn-light" *ngIf="!usuario" (click)="buscarNombreUsuario()">Desplegar</button></td>
-            <td><button class="btn btn-light" *ngIf="usuario" (click)="usuario=false">Contraer</button></td>
-            <td>
-              <form>
-                <div class="input-group input-group-sm mb-3">
+<div *ngIf="_backdata.usuario.admin=='s'" class="m-2 rounded bg-white  p-2">
+  <div class="container">
+    <div class="row">
+      <div class="col">
 
-                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                    [(ngModel)]="this.nombrebuscado" name="nombre">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm"><button class="btn"
-                        (click)="buscarNombreUsuario()">Buscar</button></span>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Acción</th>
+            </tr>
+
+          </thead>
+          <tbody>
+            <tr>
+              <td>Usuarios</td>
+              <td><button class="btn btn-light" *ngIf="!usuario" (click)="buscarNombreUsuario()">Desplegar</button></td>
+              <td><button class="btn btn-light" *ngIf="usuario" (click)="usuario=false">Contraer</button></td>
+              <td>
+                <form>
+                  <div class="input-group input-group-sm mb-3">
+
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                      [(ngModel)]="this.nombrebuscado" name="nombre">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm"><button class="btn"
+                          (click)="buscarNombreUsuario()">Buscar</button></span>
+                    </div>
                   </div>
-                </div>
-              </form>
-            </td>
-            <td><button class="btn btn-success" data-toggle="modal" data-target="#modalnuevousuario">Añadir</button>
-            </td>
-          </tr>
+                </form>
+              </td>
+              <td><button class="btn btn-success" data-toggle="modal" data-target="#modalnuevousuario">Añadir</button>
+              </td>
+            </tr>
 
-          <tr *ngIf="usuario">
+            <tr *ngIf="usuario">
 
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Email</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Apellidos</th>
-                  <th scope="col">Accion</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of arrayUsuarios">
-                  <th scope="row">{{item.email}}</th>
-                  <td>{{item.nombre}}</td>
-                  <td>{{item.apellidos}}</td>
-                  <td><button class="btn btn-primary" (click)="accederUsuarioEditado(item.email)" data-toggle="modal" data-target="#modaleditarusuario" >Editar</button></td>
-                  <td><button class="btn btn-danger" (click)="eliminarUsuario(item);usuario=false;">Eliminar</button>
-                  </td>
-                  <td><button class="btn btn-light" *ngIf="item.admin=='n' " (click)="hacerAdmin(item)">Hacer
-                      Admin</button></td>
-                  <td><button class="btn btn-light" *ngIf="item.admin=='s'&& item.email!=this._backdata.username"
-                      (click)="hacerAdmin(item)">Quitar Admin</button></td>
-                </tr>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of arrayUsuarios">
+                    <th scope="row">{{item.email}}</th>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.apellidos}}</td>
+                    <td><button class="btn btn-primary" (click)="accederUsuarioEditado(item.email)" data-toggle="modal" data-target="#modaleditarusuario" >Editar</button></td>
+                    <td><button class="btn btn-danger" (click)="eliminarUsuario(item);usuario=false;">Eliminar</button>
+                    </td>
+                    <td><button class="btn btn-light" *ngIf="item.admin=='n' " (click)="hacerAdmin(item)">Hacer
+                        Admin</button></td>
+                    <td><button class="btn btn-light" *ngIf="item.admin=='s'&& item.email!=this._backdata.username"
+                        (click)="hacerAdmin(item)">Quitar Admin</button></td>
+                  </tr>
 
-              </tbody>
-            </table>
+                </tbody>
+              </table>
 
-          </tr>
-          <tr>
-            <td>Juegos</td>
-            <td><button class="btn btn-light" *ngIf="!juego" (click)="buscarNombreJuego()">Desplegar</button></td>
-            <td><button class="btn btn-light" *ngIf="juego" (click)="juego=false">Contraer</button></td>
-            <td>
-              <form>
-                <div class="input-group input-group-sm mb-3">
+            </tr>
+            <tr>
+              <td>Juegos</td>
+              <td><button class="btn btn-light" *ngIf="!juego" (click)="buscarNombreJuego()">Desplegar</button></td>
+              <td><button class="btn btn-light" *ngIf="juego" (click)="juego=false">Contraer</button></td>
+              <td>
+                <form>
+                  <div class="input-group input-group-sm mb-3">
 
-                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                    [(ngModel)]="this.juegobuscado" name="nombre">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm"><button class="btn"
-                        (click)="buscarNombreJuego()">Buscar</button></span>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                      [(ngModel)]="this.juegobuscado" name="nombre">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm"><button class="btn"
+                          (click)="buscarNombreJuego()">Buscar</button></span>
+                    </div>
                   </div>
-                </div>
-              </form>
-            </td>
-            <td><button class="btn btn-success" data-toggle="modal" data-target="#modalnuevojuego">Añadir</button></td>
-          </tr>
+                </form>
+              </td>
+              <td><button class="btn btn-success" data-toggle="modal" data-target="#modalnuevojuego">Añadir</button></td>
+            </tr>
 
-          <tr *ngIf="juego">
+            <tr *ngIf="juego">
 
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Imagen</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Stock</th>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Stock</th>
 
-                  <th scope="col">Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of arrayJuegos">
-                  <th scope="row"><img style="max-width: 50px;" class="img-fluid" src="{{item.imagen}}"></th>
-                  <td>{{item.nombre}}</td>
-                  <td>{{item.stock}}</td>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of arrayJuegos">
+                    <th scope="row"><img style="max-width: 50px;" class="img-fluid" src="{{item.imagen}}"></th>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.stock}}</td>
 
-                  <td><button class="btn btn-primary" data-toggle="modal" data-target="#modaleditarjuego" (click)="accederJuegoEditado(item.id)">Editar</button></td>
-                  <td><button class="btn btn-danger" (click)="item.stock=0">Eliminar</button></td>
-                </tr>
+                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modaleditarjuego" (click)="accederJuegoEditado(item.id)">Editar</button></td>
+                    <td><button class="btn btn-danger" (click)="item.stock=0">Eliminar</button></td>
+                  </tr>
 
-              </tbody>
-            </table>
+                </tbody>
+              </table>
 
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+          </tbody>
+        </table>
 
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="modalnuevousuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="this.registrarUsusario()">
-          <div class="form-group">
-            <label for="exampleInputName">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-              placeholder="Nombre" [(ngModel)]="this.nuevoUser.nombre" name="nombre">
-
-            <label for="exampleInputSurname">Apellidos</label>
-            <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
-              placeholder="Apellidos" [(ngModel)]="this.nuevoUser.apellidos" name="apellidos">
-
-            <label for="exampleInputdireccion">Dirección</label>
-            <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
-              placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [(ngModel)]="this.nuevoUser.direccion"
-              name="direccion"></textarea>
-
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="example@example.com" [(ngModel)]="nuevoUser.email" name="email">
-
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-              [(ngModel)]="nuevoUser.password" name="password">
-            <script>
-
-
-            </script>
-            <button type="submit" #logear>Registrarse</button>
-
-
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-</div>
 
 
-<div class="modal fade" id="modalnuevojuego" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo juego</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="this.registrarJuego()">
-          <div class="form-group">
-            <label for="exampleInputName">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-              placeholder="Nombre" [(ngModel)]="this.nuevojeugo.nombre" name="nombre">
+  <div class="modal fade" id="modalnuevousuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="this.registrarUsusario()">
+            <div class="form-group">
+              <label for="exampleInputName">Nombre</label>
+              <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                placeholder="Nombre" [(ngModel)]="this.nuevoUser.nombre" name="nombre">
+
+              <label for="exampleInputSurname">Apellidos</label>
+              <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
+                placeholder="Apellidos" [(ngModel)]="this.nuevoUser.apellidos" name="apellidos">
+
+              <label for="exampleInputdireccion">Dirección</label>
+              <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
+                placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [(ngModel)]="this.nuevoUser.direccion"
+                name="direccion"></textarea>
+
+              <label for="exampleInputEmail1">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="example@example.com" [(ngModel)]="nuevoUser.email" name="email">
+
+              <label for="exampleInputPassword1">Contraseña</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                [(ngModel)]="nuevoUser.password" name="password">
+              <script>
 
 
-            <label for="exampleInputdireccion">Descripción</label>
-            <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
-              placeholder="Descripción" [(ngModel)]="this.nuevojeugo.descripcion" name="direccion"></textarea>
+              </script>
+              <button type="submit" #logear>Registrarse</button>
 
 
-            <label for="exampleInputSurname">Stock</label>
-            <input type="number" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
-              [(ngModel)]="this.nuevojeugo.stock" name="apellidos">
-
-              <label for="exampleInputprecio">Precio</label>
-              <input type="number" class="form-control" id="exampleInputprecio" aria-describedby="emailHelp"
-                [(ngModel)]="this.nuevojeugo.precio" name="apellidos">
-
-
-            <label for="exampleInputName">Imagen</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-              placeholder="url imagen" [(ngModel)]="this.nuevojeugo.imagen" name="nombre">
-
-
-            <label for="exampleInputEmail1">Categoria</label>
-            <select name="miselect" class="form-select" [(ngModel)]="categoriaseleccionada">
-              <option [value]="item" *ngFor="let item of arrayCategorias">{{item}}</option>
-              </select>
-
-
-
-
-
-            <button type="submit" #logear>Añadir Juego</button>
-
-
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="modal fade" id="modaleditarjuego" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar juego</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="this.editarJuego(juegoeditado.id)">
-          <div class="form-group">
-            <label for="exampleInputName2">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputName2" aria-describedby="emailHelp"
-              placeholder="Nombre" [(ngModel)]="this.juegoeditado.nombre" [value]="juegoeditado.nombre" name="nombre">
 
 
-            <label for="exampleInputdireccion">Descripción</label>
-            <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
-              placeholder="Descripción" [(ngModel)]="this.juegoeditado.descripcion" [value]="juegoeditado.descripcion" name="direccion"></textarea>
+  <div class="modal fade" id="modalnuevojuego" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo juego</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="this.registrarJuego()">
+            <div class="form-group">
+              <label for="exampleInputName">Nombre</label>
+              <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                placeholder="Nombre" [(ngModel)]="this.nuevojeugo.nombre" name="nombre">
 
 
-            <label for="exampleInputSurname">Stock</label>
-            <input type="number" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
-              [(ngModel)]="this.juegoeditado.stock" [value]="juegoeditado.stock" name="apellidos">
-
-              <label for="exampleInputprecio">Precio</label>
-              <input type="number" class="form-control" id="exampleInputprecio" aria-describedby="emailHelp"
-                [(ngModel)]="this.juegoeditado.precio" [value]="juegoeditado.precio" name="stpck">
+              <label for="exampleInputdireccion">Descripción</label>
+              <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
+                placeholder="Descripción" [(ngModel)]="this.nuevojeugo.descripcion" name="direccion"></textarea>
 
 
-            <label for="exampleInputName">Imagen</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-              placeholder="url imagen" [(ngModel)]="this.juegoeditado.imagen" [value]="juegoeditado.imagen" name="imagen">
+              <label for="exampleInputSurname">Stock</label>
+              <input type="number" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
+                [(ngModel)]="this.nuevojeugo.stock" name="apellidos">
+
+                <label for="exampleInputprecio">Precio</label>
+                <input type="number" class="form-control" id="exampleInputprecio" aria-describedby="emailHelp"
+                  [(ngModel)]="this.nuevojeugo.precio" name="apellidos">
 
 
-            <label for="exampleInputEmail1">Categoria</label>
-            <select name="miselect" class="form-select"  [(ngModel)]="categoriaseleccionada2">
-              <option [value]="item" *ngFor="let item of arrayCategorias">{{item}}</option>
-              </select>
+              <label for="exampleInputName">Imagen</label>
+              <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                placeholder="url imagen" [(ngModel)]="this.nuevojeugo.imagen" name="nombre">
 
 
+              <label for="exampleInputEmail1">Categoria</label>
+              <select name="miselect" class="form-select" [(ngModel)]="categoriaseleccionada">
+                <option [value]="item" *ngFor="let item of arrayCategorias">{{item}}</option>
+                </select>
 
 
 
-            <button type="submit" #logear>Editar Juego</button>
 
 
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="modaleditarusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="this.editarUsuario()">
-          <div class="form-group">
-            <label for="exampleInputName">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-              placeholder="Nombre" [value]="usuarioeditado.nombre" [(ngModel)]="this.usuarioeditado.nombre" name="nombre">
-
-            <label for="exampleInputSurname">Apellidos</label>
-            <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
-              placeholder="Apellidos" [value]="usuarioeditado.apellidos" [(ngModel)]="this.usuarioeditado.apellidos" name="apellidos">
-
-            <label for="exampleInputdireccion">Dirección</label>
-            <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
-              placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [value]="usuarioeditado.direccion" [(ngModel)]="this.usuarioeditado.direccion"
-              name="direccion"></textarea>
-
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="example@example.com" [value]="usuarioeditado.email" [(ngModel)]="usuarioeditado.email" name="email">
-
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-              [(ngModel)]="usuarioeditado.password" [value]="usuarioeditado.password" name="password">
-            <script>
+              <button type="submit" #logear>Añadir Juego</button>
 
 
-            </script>
-            <button type="submit" #logear>Editar Usuario</button>
-
-
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modaleditarjuego" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar juego</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="this.editarJuego(juegoeditado.id)">
+            <div class="form-group">
+              <label for="exampleInputName2">Nombre</label>
+              <input type="text" class="form-control" id="exampleInputName2" aria-describedby="emailHelp"
+                placeholder="Nombre" [(ngModel)]="this.juegoeditado.nombre" [value]="juegoeditado.nombre" name="nombre">
+
+
+              <label for="exampleInputdireccion">Descripción</label>
+              <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
+                placeholder="Descripción" [(ngModel)]="this.juegoeditado.descripcion" [value]="juegoeditado.descripcion" name="direccion"></textarea>
+
+
+              <label for="exampleInputSurname">Stock</label>
+              <input type="number" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
+                [(ngModel)]="this.juegoeditado.stock" [value]="juegoeditado.stock" name="apellidos">
+
+                <label for="exampleInputprecio">Precio</label>
+                <input type="number" class="form-control" id="exampleInputprecio" aria-describedby="emailHelp"
+                  [(ngModel)]="this.juegoeditado.precio" [value]="juegoeditado.precio" name="stpck">
+
+
+              <label for="exampleInputName">Imagen</label>
+              <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                placeholder="url imagen" [(ngModel)]="this.juegoeditado.imagen" [value]="juegoeditado.imagen" name="imagen">
+
+
+              <label for="exampleInputEmail1">Categoria</label>
+              <select name="miselect" class="form-select"  [(ngModel)]="categoriaseleccionada2">
+                <option [value]="item" *ngFor="let item of arrayCategorias">{{item}}</option>
+                </select>
+
+
+
+
+
+              <button type="submit" #logear>Editar Juego</button>
+
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modaleditarusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="this.editarUsuario()">
+            <div class="form-group">
+              <label for="exampleInputName">Nombre</label>
+              <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                placeholder="Nombre" [value]="usuarioeditado.nombre" [(ngModel)]="this.usuarioeditado.nombre" name="nombre">
+
+              <label for="exampleInputSurname">Apellidos</label>
+              <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
+                placeholder="Apellidos" [value]="usuarioeditado.apellidos" [(ngModel)]="this.usuarioeditado.apellidos" name="apellidos">
+
+              <label for="exampleInputdireccion">Dirección</label>
+              <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
+                placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [value]="usuarioeditado.direccion" [(ngModel)]="this.usuarioeditado.direccion"
+                name="direccion"></textarea>
+
+              <label for="exampleInputEmail1">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="example@example.com" [value]="usuarioeditado.email" [(ngModel)]="usuarioeditado.email" name="email">
+
+              <label for="exampleInputPassword1">Contraseña</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                [(ngModel)]="usuarioeditado.password" [value]="usuarioeditado.password" name="password">
+              <script>
+
+
+              </script>
+              <button type="submit" #logear>Editar Usuario</button>
+
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+

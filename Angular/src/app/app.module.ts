@@ -8,15 +8,16 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { JuegoComponent } from './juego/juego.component';
 import { ValoradosComponent } from './valorados/valorados.component';
-import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
+
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NovedadesComponent } from './novedades/novedades.component';
+
 import { DatePipe } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AdminComponent } from './admin/admin.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { ListadeseosComponent } from './listadeseos/listadeseos.component';
 
 
 @NgModule({
@@ -28,12 +29,12 @@ import { CarritoComponent } from './carrito/carrito.component';
     JuegoComponent,
 
     ValoradosComponent,
-    NuevoUsuarioComponent,
-    NovedadesComponent,
+
     HeaderComponent,
     PerfilComponent,
     AdminComponent,
-    CarritoComponent
+    CarritoComponent,
+    ListadeseosComponent
   ],
   imports: [
     BrowserModule,

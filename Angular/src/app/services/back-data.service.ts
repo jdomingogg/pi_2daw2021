@@ -45,6 +45,7 @@ export class BackDataService {
   }
 
   ultimoPedido(){
+    console.log(this.iduser)
     setTimeout(() => {
       this.obtenerCarrito().subscribe(data=>{
         for (let i = 0; i < data.length; i++) {
@@ -203,9 +204,9 @@ enviarEmail(id_pedido:any,id_usuario:any){
 
   }
 
-  eliminarListaDeseos(p: any) {
+  eliminarListaDeseos(iduser:any,idprod: any) {
 
-    return this.http.post("http://54.235.247.212/api/listadeseos/destroy/" + p, this.httpHeader);
+    return this.http.post("http://54.235.247.212/api/listadeseos/destroy/" + iduser + "/" + idprod, this.httpHeader);
 
   }
 
@@ -280,6 +281,7 @@ enviarEmail(id_pedido:any,id_usuario:any){
     var r = confirm("¿Seguro que quieres cerrar sesión?")
     if (r) {
       this.iduser = -1;
+      this.usuario=new Usuario("","","","","","n");
     }
     console.log(this.iduser)
   }

@@ -1,41 +1,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<nav class="navbar bg-warning navbar-expand-lg navbar-light">
+<nav class="navbar bg-success navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <div class="row">
       <div class="col-2">
-        <a [routerLink]="['home']"><img width="50%"
-            src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2020/04/game-1913657.jpg"
-            class="img-fluid"></a>
+        <a [routerLink]="['home']"><img style="width: 50%;"
+            src="assets/gueim.png"
+            class="img-fluid rounded"></a>
 
       </div>
-      <div class="col">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-              <a class="nav-link" [routerLink]="['valorados']">Mejores Valorados</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['novedades']">Novedades</a>
-            </li>
+      <div class="col-6">
+        <div class="input-group">
+          <div class="form-outline">
+            <input type="search" id="form1" placeholder="Search" class="form-control" [(ngModel)]="buscar" />
 
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['categoria']">Categoría</a>
-            </li>
-          </ul>
-
-
-
+          </div>
+          <button type="button"  [routerLink]="['../buscar',buscar]" class="btn btn-primary">
+            <i class="fas fa-search">Buscar</i>
+          </button>
         </div>
-
-
       </div>
-      <div class="col-3">
+
+
+      <div class="col-2">
         <div *ngIf="_backdata.iduser==-1; else elseBlock">
 
           <!-- Button trigger modal -->
@@ -56,16 +44,19 @@
 
       </div>
 
-      <div class="col-2">
-        <div class="dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            Menú
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button" [routerLink]="['../carrito']"(click)="_backdata.ultimoPedido()">Carrito</button>
-            <button class="dropdown-item" type="button">Lista de deseos</button>
-            <div *ngIf="_backdata.iduser>-1">
+        <div class="col-2">
+          <div *ngIf="_backdata.iduser>-1">
+          <div class="dropdown">
+            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Menú
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+
+              <button class="dropdown-item" type="button" [routerLink]="['../carrito']"
+                (click)="_backdata.ultimoPedido()">Carrito</button>
+              <button class="dropdown-item" type="button" [routerLink]="['../listadeseos']">Lista de deseos</button>
+
               <button class="dropdown-item" type="button" [routerLink]="['../perfil']">Perfil</button>
 
               <div *ngIf="_backdata.usuario.admin=='s'">
@@ -145,23 +136,23 @@
           <div class="form-group">
             <label for="exampleInputName">Nombre</label>
             <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-              placeholder="Nombre" [(ngModel)]="this.nuevoUser.nombre" name="nombre">
+              placeholder="Nombre" [(ngModel)]="this.nuevoUser.nombre" required name="nombre">
 
             <label for="exampleInputSurname">Apellidos</label>
             <input type="text" class="form-control" id="exampleInputSurname" aria-describedby="emailHelp"
-              placeholder="Apellidos" [(ngModel)]="this.nuevoUser.apellidos" name="apellidos">
+              placeholder="Apellidos" [(ngModel)]="this.nuevoUser.apellidos" required name="apellidos">
 
             <label for="exampleInputdireccion">Dirección</label>
             <textarea class="form-control" id="exampleInputdireccion" aria-describedby="emailHelp"
-              placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" [(ngModel)]="this.nuevoUser.direccion"
+              placeholder="Calle Luz 29, Dos Hermanas, 41700, Sevilla" required [(ngModel)]="this.nuevoUser.direccion"
               name="direccion"></textarea>
 
             <label for="exampleInputEmail1">Email</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="example@example.com" [(ngModel)]="nuevoUser.email" name="email">
+              placeholder="example@example.com" [(ngModel)]="nuevoUser.email" required name="email">
 
             <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+            <input type="password" class="form-control" id="exampleInputPassword1" required placeholder="Password"
               [(ngModel)]="nuevoUser.password" name="password">
             <script>
 

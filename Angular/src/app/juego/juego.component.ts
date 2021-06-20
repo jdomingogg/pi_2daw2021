@@ -103,52 +103,23 @@ export class JuegoComponent implements OnInit {
   botonAnnadir() {
 
 
+    if (this._backdata.iduser == -1) {
+      alert("Inicie sesión para poder comprar")
+    } else {
+      this._backdata.obtenerCarrito().subscribe(data => {
+        var bcar = false;
+        for (let i = 0; i < data.length; i++) {
 
-
-    this._backdata.obtenerCarrito().subscribe(data => {
-      var bcar = false;
-      for (let i = 0; i < data.length; i++) {
-
-        if (this._backdata.iduser == data[i]['id_usuario']) {
-          if (data[i]['comprado'] == 'n') {
-            bcar = true;
+          if (this._backdata.iduser == data[i]['id_usuario']) {
+            if (data[i]['comprado'] == 'n') {
+              bcar = true;
+            }
           }
+
+
         }
 
-
-      }
-
-      if (bcar) {
-        this._backdata.obtenerCarrito().subscribe(data => {
-          var id1 = 0;
-          if (data.length == 0) {
-            id1 = 1;
-          } else {
-            for (let i = 0; i < data.length; i++) {
-              id1 = data[i]['id'];
-
-            }
-
-          }
-          this.detallepedido.id_pedido = id1;
-          this.detallepedido.id_producto = this.juego.id;
-          this.detallepedido.devuelto = "n";
-          const newdetalle = { id_pedido: this.detallepedido.id_pedido, id_producto: this.detallepedido.id_producto, cantidad: this.detallepedido.cantidad, devuelto: 'n' }
-          const actualizajuego = { nombre: this.juego.nombre, descripcion: this.juego.descripcion, precio: this.juego.precio, stock: (this.juego.stock - this.detallepedido.cantidad), imagen: this.juego.imagen, id_categoria: this.juego.id_categoria }
-          this._backdata.crearCarritoDetalles(newdetalle).subscribe(data => console.log(data));
-          this._backdata.actualizarJuego(actualizajuego, this.juego.id).subscribe(data => console.log(data));
-
-
-        })
-
-      } else {
-        this.carrito['comprado'] = 'n';
-        this.carrito['fecha'] = new Date();
-        this.carrito['id_usuario'] = this._backdata.iduser;
-        console.log("Hola")
-
-        this._backdata.crearPedido(this.carrito).subscribe(data => console.log(data));
-        setTimeout(() => {
+        if (bcar) {
           this._backdata.obtenerCarrito().subscribe(data => {
             var id1 = 0;
             if (data.length == 0) {
@@ -170,11 +141,44 @@ export class JuegoComponent implements OnInit {
 
 
           })
-        }, 1000);
 
-      }
+        } else {
+          this.carrito['comprado'] = 'n';
+          this.carrito['fecha'] = new Date();
+          this.carrito['id_usuario'] = this._backdata.iduser;
+          console.log("Hola")
 
-    })
+          this._backdata.crearPedido(this.carrito).subscribe(data => console.log(data));
+          setTimeout(() => {
+            this._backdata.obtenerCarrito().subscribe(data => {
+              var id1 = 0;
+              if (data.length == 0) {
+                id1 = 1;
+              } else {
+                for (let i = 0; i < data.length; i++) {
+                  id1 = data[i]['id'];
+
+                }
+
+              }
+              this.detallepedido.id_pedido = id1;
+              this.detallepedido.id_producto = this.juego.id;
+              this.detallepedido.devuelto = "n";
+              const newdetalle = { id_pedido: this.detallepedido.id_pedido, id_producto: this.detallepedido.id_producto, cantidad: this.detallepedido.cantidad, devuelto: 'n' }
+              const actualizajuego = { nombre: this.juego.nombre, descripcion: this.juego.descripcion, precio: this.juego.precio, stock: (this.juego.stock - this.detallepedido.cantidad), imagen: this.juego.imagen, id_categoria: this.juego.id_categoria }
+              this._backdata.crearCarritoDetalles(newdetalle).subscribe(data => console.log(data));
+              this._backdata.actualizarJuego(actualizajuego, this.juego.id).subscribe(data => console.log(data));
+
+
+            })
+          }, 1000);
+
+        }
+
+      })
+    }
+
+
 
 
 
@@ -252,6 +256,17 @@ export class JuegoComponent implements OnInit {
       this.generarValoraciones();
     }, 500);
 
+  }
+
+  anadirlistadeseos() {
+    if (this._backdata.iduser == -1) {
+      alert("Inicie sesión para poder añadir a lista de deseos")
+    } else {
+
+      const ld = { id_usuario: this._backdata.iduser, id_producto: this.juego.id }
+      this._backdata.crearListaDeseos(ld).subscribe(data => { console.log(data) })
+      alert("Añadido a la lista de deseos")
+    }
   }
 
 }

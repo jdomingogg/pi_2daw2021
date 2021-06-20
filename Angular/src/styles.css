@@ -1,1 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+body{
+  background-image: url('https://c.wallhere.com/photos/64/a2/Super_Mario_video_games_Super_Mario_Bros_Super_Mario_World-103734.jpg!d');
+  background-attachment: fixed;
+}

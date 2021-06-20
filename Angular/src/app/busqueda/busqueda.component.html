@@ -1,1 +1,17 @@
-<p>busqueda works!</p>
+<h1>Resultados de la búsqueda de "{{buscar}}"</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-4 col-md-6 justify-content-center" *ngFor="let ju of arrayjuegos">
+      <a [routerLink]="['../../juego',ju.id]">
+        <div class="justify-content-center card border border-dark m-2" style="width: 18rem;">
+          <img class="card-img-top justify-content-center" src="{{ju.imagen}}" alt="Card image cap">
+          <div class="card-body">
+            <h3 class="card-text">{{ju.nombre}}</h3>
+            <p>{{ju.precio}}€</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

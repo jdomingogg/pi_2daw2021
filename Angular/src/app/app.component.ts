@@ -8,5 +8,5 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular';
+  title = 'GUEIM.ES';
 }

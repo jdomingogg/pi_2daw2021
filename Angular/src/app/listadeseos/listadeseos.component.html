@@ -1,0 +1,27 @@
+<h1>Lista de deseos</h1>
+
+<div *ngIf="_backdata.iduser==-1">
+  <h1>Inicie sesión para acceder a la lista de deseos</h1>
+</div>
+
+<div *ngIf="_backdata.iduser!=-1" class="m-2 rounded bg-white  p-2">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Imagen</th>
+        <th scope="col">Nombre</th>
+
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of arrayjuegos; let i=index">
+        <td><img class="img-fluid" style="width: 30px;" src="{{item.imagen}}"></td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.precio}}€</td>
+        <td><td><button class="btn btn-danger" (click)="eliminar(_backdata.iduser,item.id)">Quitar de la lista</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
